@@ -1,0 +1,56 @@
+---
+title: "a6 API Report"
+subtitle: "Congressional Representatives"
+author: "Bernabe Ibarra"
+date: "2019-02-19"
+output:
+  html_document:
+      smooth_scroll: TRUE
+---
+
+```{r setup, include=FALSE}
+library("knitr")
+library("kableExtra")
+knitr::opts_chunk$set(echo = F)
+source("propublica.R")
+source("civic-info.R")
+```
+
+# Who Represents You?
+_____________________
+
+
+# Your Representative
+_____________________
+
+This is a report about the political representatives based on the address entered (`r address_in`). This report draws upon data from the [ProPublica API](https://projects.propublica.org/api-docs/congress-api/) and the [Google Civic Data API](https://developers.google.com/civic-information/). As an overview, here is a summary of _who_ represents the address given (from the **local** to the **national** level).
+
+_____________________
+```{r}
+kable(rep_df, format = "html", row.names = NA, col.names = c(
+  "Name", "Position", "Party", "email", "Phone", "Photo"
+  )
+)
+ %>% Photo = sprintf("![](%s)", Photo)
+```
+
+
+# House of Representatives
+_____________________
+
+Now let's take a look at all of the congressional representatives (in the House of Representatives, not the Senate) for the state in which the address was given. We see this breakdown by gender and political party for those members of the House:
+
+```{r}
+reps_by_gender
+```
+
+```{r}
+reps_by_party
+```
+
+# Name
+_____________________
+
+Let's learn a bit more about one representative, Diana DeGette. The representative is 60 years
+old, and you can find them on twitter at RepDianaDeGette. Interestingly, of the last 20
+congressional votes, the representative was in accordance with the majority 50% of the time.
